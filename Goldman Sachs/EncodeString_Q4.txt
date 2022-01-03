@@ -1,0 +1,24 @@
+https://practice.geeksforgeeks.org/problems/run-length-encoding/1/#
+
+class GfG
+ {
+	String encode(String str)
+	{
+      StringBuilder sb=new StringBuilder();
+      char ch[]=str.toCharArray();
+      int i=0,j;
+      while(i<str.length())
+      {
+          sb.append(ch[i]);
+          int c=1;
+          for( j=i+1;j<ch.length && ch[i]==ch[j];j++)
+          {
+              c++;
+          }
+          sb.append(c);
+          i=j;
+      }
+      return sb.toString();
+	}
+	
+ }

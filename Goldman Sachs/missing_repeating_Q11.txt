@@ -1,0 +1,44 @@
+// https://practice.geeksforgeeks.org/problems/find-missing-and-repeating2512/1/#
+
+class Solve {
+    int[] findTwoElement(int arr[], int n) {
+     int xor=0;
+     for(int i=1;i<=n;i++)
+     xor^=i;
+     for(int i:arr)
+     xor^=i;
+     
+     // xor = missing number xor repeating number
+     int bucket1=0,bucket2=0;
+     for(int x:arr)
+     {
+         if((x & (xor& ~(xor-1))) ==0)
+         bucket1^=x;
+         else
+         bucket2^=x;
+     }
+     for(int i=1;i<=n;i++)
+     {
+        if((i & (xor& ~(xor-1)))==0)
+         bucket1^=i;
+         else
+         bucket2^=i;
+     }
+     boolean flag=false;
+     for(int x:arr)
+     {
+         if(bucket1==x)
+         {
+             flag=true;
+             break;
+         }
+     }
+     if(flag)
+     {
+        return new int[]{bucket1, bucket2};
+     }
+     else{
+          return new int[]{bucket2, bucket1};
+     }
+    }
+}

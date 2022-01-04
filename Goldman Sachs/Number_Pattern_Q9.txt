@@ -1,0 +1,32 @@
+//  https://practice.geeksforgeeks.org/problems/number-following-a-pattern3126/1#
+
+class Solution{
+    static String printMinNumberForPattern(String S){
+        char ch[]=S.toCharArray();
+       StringBuilder sb=new StringBuilder();
+       Stack<Integer> s=new Stack<>();
+       int count=1;
+       for(char c:ch)
+       {
+           if(c=='D')
+            { 
+           s.push(count);
+           count++;
+       }
+       else{
+           s.push(count);
+           while(!s.isEmpty()){
+               char num=(char)('0'+s.pop());
+           sb.append(num);}
+           count++;
+           
+       }
+       }
+         s.push(count);
+           while(!s.isEmpty()){
+            char num=(char)('0'+s.pop());
+           sb.append((char)(num));
+           }
+        return sb.toString();
+    }
+}

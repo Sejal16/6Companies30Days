@@ -1,0 +1,33 @@
+https://practice.geeksforgeeks.org/problems/deee0e8cf9910e7219f663c18d6d640ea0b87f87/1/#
+
+class Solution {
+    static ArrayList<Integer> max_of_subarrays(int nums[], int n, int k) {
+     ArrayList<Integer> res=new ArrayList<>();
+   Deque<Integer> dq=new LinkedList<>();
+        int i=0,j=0;
+        int t=0;
+        while(j<n)
+        {
+            // Calculation
+            while(!dq.isEmpty() && nums[dq.peekLast()]<nums[j])
+            {
+                dq.pollLast();
+            }
+            dq.offerLast(j);
+            
+            // when  the window size is equal to K
+            if(j-i+1==k)
+            {
+                // Using the Calculation to take out the ans
+                res.add(nums[dq.peekFirst()]);
+                i++;
+                if(dq.peekFirst()<i)
+                    dq.pollFirst();
+            }
+            //when we don't reach the window size just increment j
+            if((j-i+1)<k)
+                j++;
+        }
+        return res;
+    }
+}

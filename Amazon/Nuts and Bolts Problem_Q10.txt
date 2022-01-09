@@ -1,0 +1,9 @@
+
+https://practice.geeksforgeeks.org/problems/nuts-and-bolts-problem0431/1#
+
+class Solution {
+    void matchPairs(char nuts[], char bolts[], int n) {
+        Arrays.sort(nuts);
+        Arrays.sort(bolts);
+    }
+}

@@ -1,0 +1,31 @@
+https://practice.geeksforgeeks.org/problems/is-sudoku-valid4820/1/
+
+class Solution{
+    static int isValid(int mat[][]){
+      for(int i=0;i<9;i++)
+        {
+            for(int j=0;j<9;j++){
+                if(mat[i][j]!=0){
+               if(!isSafe(mat,i,j,mat[i][j]))
+                   return 0;
+            }}
+                        
+            }
+            return 1;
+    }
+  
+   static boolean isSafe(int mat[][],int row,int col,int t){
+        for(int k=0;k<9;k++)
+        {
+            if(mat[k][col]==t && k!=row)
+            return false;
+            if(mat[row][k]==t && k!=col)
+            return false;
+            if(mat[3*(row/3)+(k/3)][3*(col/3)+(k%3)]==t  && (3*(row/3)+(k/3))!=row &&
+            (3*(col/3)+(k%3))!=col )
+            return false;
+        }
+        return true;
+    }
+}
+

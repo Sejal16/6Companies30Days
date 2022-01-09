@@ -1,0 +1,32 @@
+// https://practice.geeksforgeeks.org/problems/first-non-repeating-character-in-a-stream1216/1#
+
+class Solution
+{
+    public String FirstNonRepeating(String A)
+    {
+       int visit[]=new int[26];
+       char ch[]=A.toCharArray();
+       StringBuilder sb=new StringBuilder();
+       Queue<Character> q=new LinkedList<>();
+       for(int i=0;i<ch.length;i++)
+       {
+           if(visit[ch[i]-'a']==0)
+           {
+               q.remove(ch[i]);
+           
+               if(!q.isEmpty())
+               sb.append(q.peek());
+               else
+               sb.append('#');
+               
+           }
+           else{
+               visit[ch[i]-'a']=1;
+               q.offer(ch[i]);
+               sb.append(q.peek());
+           }
+          
+       }
+       return sb.toString();
+    }
+}

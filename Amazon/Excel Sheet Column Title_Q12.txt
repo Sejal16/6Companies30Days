@@ -1,0 +1,33 @@
+https://leetcode.com/problems/excel-sheet-column-title/
+
+class Solution {
+    public String convertToTitle(int columnNumber) {
+     HashMap<Integer,String> hm=new HashMap<>();
+        hm.put(0,"Z");
+         hm.put(26,"Z");
+         String s="";
+        for(char i='A';i<'Z';i++)
+            hm.put(i-'A'+1, Character.toString(i));
+        System.out.println(hm);
+        if(columnNumber <=26)
+            return hm.get(columnNumber%26);
+        else{
+          return  getS( columnNumber,s,hm);
+        }
+    
+    }
+    String getS(int n,String s,  HashMap<Integer,String> hm){
+        int q=n/26;
+        if(n%26==0)q--;
+        if(hm.containsKey(q)){
+            
+            return s+hm.get(q)+hm.get(n%26);
+        }
+            
+        else
+          return  getS(q,s,hm)+hm.get(n%26);
+          
+            
+        }
+    
+}

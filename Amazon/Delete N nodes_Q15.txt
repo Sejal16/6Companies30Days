@@ -1,0 +1,23 @@
+https://practice.geeksforgeeks.org/problems/delete-n-nodes-after-m-nodes-of-a-linked-list/1/#submission
+
+class Solution
+{
+    static void linkdelete(Node head, int m, int n)
+    {
+         Node temp2=head;
+        while(temp2!=null){
+        Node temp=temp2;
+        for(int i=1;i<=m-1;i++)
+        temp=temp.next;
+        int c=n;
+       temp2=temp.next;
+        while(temp2!=null && c-->0 )
+        {
+            temp2=temp2.next;
+
+        }
+        temp.next=temp2;
+        // if(temp2!=null)
+        //           System.out.println(temp.data+" "+temp2.data);
+    }}
+}

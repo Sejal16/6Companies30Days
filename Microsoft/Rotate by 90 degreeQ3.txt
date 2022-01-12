@@ -1,0 +1,36 @@
+https://practice.geeksforgeeks.org/problems/rotate-by-90-degree0356/1/#
+
+class GFG
+{
+    static void rotate(int matrix[][]) 
+    {
+        int n=matrix.length;
+       //Transpose
+       for(int i=0;i<n;i++)
+       {
+           for(int j=i+1;j<n;j++)
+           {
+               swap(matrix,i,j);
+           }
+       }
+       for(int i=0;i<n;i++)
+       {
+           reverse(matrix,i,0,n-1);
+       }
+    }
+    static void swap(int arr[][],int i,int j){
+        int temp=arr[i][j];
+        arr[i][j]=arr[j][i];
+        arr[j][i]=temp;
+    }
+    static void reverse(int arr[][],int col,int i,int j){
+        while(i<j)
+        {
+            int temp=arr[i][col];
+            arr[i][col]=arr[j][col];
+            arr[j][col]=temp;
+            i++;
+            j--;
+        }
+    }
+}

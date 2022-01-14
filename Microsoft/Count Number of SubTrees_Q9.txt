@@ -1,0 +1,28 @@
+https://practice.geeksforgeeks.org/problems/count-number-of-subtrees-having-given-sum/1/#
+
+class Tree
+{
+    //Function to count number of subtrees having sum equal to given sum.
+    int countSubtreesWithSumX(Node root, int X)
+    {
+	int d[]=new int[1];
+	solve(root,X,d);
+
+	return d[0];
+    }
+    static int solve(Node root, int target,int d[])
+{
+    if(root==null)
+	return 0;
+	int left=solve(root.left,target,d);
+	int right=solve(root.right,target,d);
+	int sum=root.data+left+right;
+	if(sum==target)
+	d[0]++;
+	return sum;
+}
+    
+    
+    
+}
+

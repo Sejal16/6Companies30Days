@@ -1,0 +1,49 @@
+https://practice.geeksforgeeks.org/problems/possible-words-from-phone-digits-1587115620/1/#
+
+class Solution
+{
+    //Function to find list of all words possible by pressing given numbers.
+    static ArrayList <String> possibleWords(int a[], int n)
+    {
+      ArrayList<String> res=new ArrayList<>();
+      HashMap<Integer,String> hm=new HashMap<>();
+        hm.put(2,"abc");
+        hm.put(3,"def");
+        hm.put(4,"ghi");
+        hm.put(5,"jkl");
+        hm.put(6,"mno");
+        hm.put(7,"pqrs");
+        hm.put(8,"tuv");
+        hm.put(9,"wxyz");
+        solve(hm,res,new ArrayList<Character>(),n,a,0);
+        return res;
+    }
+    
+  public static void  solve(HashMap<Integer,String> hm, ArrayList<String> res,ArrayList<Character> temp,int n,int a[],int idx)
+    {
+        if(temp.size()==n)
+        {
+            res.add(convert(temp));
+            return;
+        }
+       char ch[]=hm.get(a[idx]).toCharArray();
+       for(int i=0;i<ch.length;i++)
+        {
+            temp.add(ch[i]);
+            solve(hm,res,temp,n,a,idx+1);
+            temp.remove(temp.size()-1);
+        }
+    }
+    
+     public static String convert(ArrayList<Character> temp)
+    {
+        StringBuilder sb=new StringBuilder();
+        for(Character x:temp )
+            sb.append(x);
+        return  sb.toString();
+    }
+}
+
+
+
+

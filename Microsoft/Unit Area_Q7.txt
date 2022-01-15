@@ -1,0 +1,45 @@
+https://practice.geeksforgeeks.org/problems/length-of-largest-region-of-1s-1587115620/1/#'
+
+
+
+class Solution
+{static int c=0;
+    //Function to find unit area of the largest region of 1s.
+   static int dir[][]={{0,1},{0,-1},{1,0},{-1,0},{1,1},{-1,-1},{-1,1},{1,-1}};
+    public int findMaxArea(int[][] grid)
+    {
+        int res=0;
+        int n=grid.length;
+        int m=grid[0].length;
+        boolean visited[][]=new boolean[n][m];
+        for(int i=0;i<n;i++)
+        {
+            for(int j=0;j<m;j++)
+            {c=0;
+                if(grid[i][j]==1  && !visited[i][j])
+                {
+              countRegion(grid,visited,i,j,n,m);
+                  res=Math.max(res,c);  
+                }
+            }
+        }
+        return res;
+    }
+    public static void countRegion(int grid[][],boolean visited[][],int i,int j,int n,int m){
+       visited[i][j]=true;
+       c++;
+        for(int k=0;k<8;k++)
+        {
+            int x=i+dir[k][0];
+            int y=j+dir[k][1];
+            if(x<0 ||y<0 || x>=n ||y>=m)
+            continue;
+            if(grid[x][y]==1 && !visited[x][y])
+          { 
+          
+          countRegion(grid,visited,x,y,n,m);
+        }
+        }
+       
+    }
+}

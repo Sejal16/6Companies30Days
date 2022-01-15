@@ -1,0 +1,27 @@
+https://practice.geeksforgeeks.org/problems/generate-binary-numbers-1587115620/1/#
+
+class solve{
+    
+    //Function to generate binary numbers from 1 to N using a queue.
+    static ArrayList<String> generate(int N)
+    {
+        ArrayList<String> res=new ArrayList<>();
+       for(int i=1;i<=N;i++)
+       {
+           String s=genBin(i);
+          res.add(s);
+       }
+       return res;
+    }
+    public static String genBin(int n)
+    {
+   String s="";
+        while(n>0)
+        {
+            int r=n%2;
+            s=r+s;
+            n/=2;
+        }
+        return s;
+    }
+}

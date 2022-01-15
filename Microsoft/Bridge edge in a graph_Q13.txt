@@ -1,0 +1,52 @@
+https://practice.geeksforgeeks.org/problems/bridge-edge-in-graph/1#
+
+class Solution
+{
+    //Function to find if the given edge is a bridge in graph.
+    static int isBridge(int V, ArrayList<ArrayList<Integer>> adj,int c,int d)
+    {
+        int n=adj.size();
+       boolean visited[]=new boolean[n];
+       int curr[]=new int[n];
+       int low[]=new int[n];
+    
+       for(int i=0;i<n;i++)
+       {
+           if(!visited[i] ){
+                //   System.out.println(i);
+               if(findBridge(i,curr,low,visited,0,adj,-1,c,d))
+               return 1;
+           }
+       }
+       return 0;
+    }
+  public static boolean  findBridge(int u,int curr[],int low[],boolean visited[],int timer,ArrayList<ArrayList<Integer>> adj,int parent,int c,int d)
+    {
+        visited[u]=true;
+        curr[u]=low[u]=timer++;
+        
+        for(int v:adj.get(u))
+        {
+            if(v==parent)continue;
+            if(!visited[v])
+            {
+                if(findBridge(v,curr,low,visited,timer,adj,u,c,d))
+                return true;
+                low[u]=Math.min(low[u],low[v]);
+            
+             if(u==c && d==v || u==d && v==c)
+            {
+            if(low[v]>curr[u])
+            {
+            return true;
+            }
+            else    
+            return false;
+            }
+            }
+            else
+            low[u]=Math.min(low[u],low[v]);
+        }
+        return false;
+    }
+}

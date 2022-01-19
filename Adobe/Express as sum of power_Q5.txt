@@ -1,0 +1,49 @@
+https://practice.geeksforgeeks.org/problems/express-as-sum-of-power-of-natural-numbers5647/1#
+
+class Solution
+{
+    static int numOfWays(int n, int x)
+    {
+         int limit =(int)Math.pow(n,1.0/x);
+     int dp[][]=new int[limit+1][n+1];
+for(int u[]:dp)
+Arrays.fill(u,-1);
+    return (solve(limit+1,1,n,dp,x));
+     
+    }
+    public static int solve(int n,int idx,int target,int dp[][],int x){
+        
+        
+       
+        if(target==0)
+        {
+            return 1;
+        }
+         if(idx>=n)
+        {
+            return 0;
+        }
+        if(target<0)
+        return 0;
+        
+        if(dp[idx][target]!=-1)
+        return dp[idx][target];
+        
+        int pick=solve(n,idx+1,target-pow(idx,x),dp,x);
+         int notpick=solve(n,idx+1,target,dp,x);
+      
+
+       return dp[idx][target]=pick+notpick;
+    }
+static int pow(int a, int b) {
+	int ans = 1;
+	while (b > 0) {
+		if ((b & 1) != 0)
+			ans *= a;
+
+		a = a * a;
+		b = b >> 1;
+	}
+	return ans;
+}
+}

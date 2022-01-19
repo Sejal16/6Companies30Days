@@ -1,0 +1,28 @@
+https://practice.geeksforgeeks.org/problems/generate-all-possible-parentheses/1/#
+
+class Solution {
+    
+    public List<String> AllParenthesis(int n) 
+    {
+       List<String> res=new ArrayList<>();
+        f(res,0,0,"",n);
+        return res;
+    }
+    public static  void f( List<String> res,int start,int end,String s,int n)
+    {
+        if(s.length()==2*n)
+        {
+            res.add(s);
+            return;
+            
+        }
+        if(start<n)
+        {
+            f(res,start+1,end,s+"(",n);
+        }
+        if(end<start)
+        {
+             f(res,start,end+1,s+")",n);
+        }
+}
+}

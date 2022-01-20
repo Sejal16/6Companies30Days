@@ -1,0 +1,44 @@
+Smallest range in K lists
+
+class Element{
+    int idx,row, val;
+    public Element(int i, int r, int v) {
+			val = v;
+			idx = i;
+			row = r;
+		}
+}
+class Solution
+{
+	static int[] findSmallestRange(int[][] arr,int m,int n)
+	{
+	    PriorityQueue<Element> pq=new PriorityQueue<Element>((a,b)->a.val-b.val);
+	     int start=0,end=0,range=Integer.MAX_VALUE,max=0;
+	     for(int i=0;i<n;i++)
+	    {
+	        pq.offer(new Element(0,i,arr[i][0]));
+	        max=Math.max(max,arr[i][0]);
+	    }
+	    
+	    while(pq.size()==arr.length)
+	    {
+	        Element curr=pq.poll();
+	        if((max-curr.val)<range)
+	        {
+	            start=curr.val;
+	            end=max;
+	            range=max-curr.val;
+	        }
+	        
+	        if(curr.idx+1<arr[curr.row].length)
+	        {
+	            curr.idx++;
+	            pq.offer(new Element(curr.idx,curr.row,arr[curr.row][curr.idx]));
+	            max=Math.max(max,arr[curr.row][curr.idx]);
+	            
+	        }
+	    }
+	    return new int[]{start,end};
+	}
+	
+}

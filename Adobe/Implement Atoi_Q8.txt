@@ -1,0 +1,25 @@
+https://practice.geeksforgeeks.org/problems/implement-atoi/1/#
+
+class Solution
+{
+    int atoi(String str) {
+       char ch[]=str.toCharArray();
+       int n=ch.length;
+       int s=0;
+       boolean neg=false;
+       for(int i=0;i<n;i++)
+       {
+           if(ch[i]=='-')
+            neg=true;
+       
+       else    if(ch[i]>='0' && ch[i]<='9')
+           {
+               int x=ch[i]-'0';
+               s=s*10+x;
+           }
+           else
+           return -1;
+       }
+       return neg==true?-s:s;
+    }
+}

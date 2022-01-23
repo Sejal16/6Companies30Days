@@ -1,0 +1,48 @@
+https://practice.geeksforgeeks.org/problems/word-search/1/#
+
+class Solution
+{
+    public boolean isWordExist(char[][] board, String word)
+    {
+        int n=board.length;
+        int m=board[0].length;
+        char ch[]=word.toCharArray();
+        boolean visited[][]=new boolean[n][m];
+        int dir[][]={{0,1},{1,0},{0,-1},{-1,0}};
+        for(int i=0;i<n;i++){
+            for(int j=0;j<m;j++)
+            {
+                if(ch[0]==board[i][j])
+                {
+                    if(solve(board,ch,i,j,0,dir,visited))
+                    return true;
+            }
+                
+            }
+        }
+        return false;
+    }
+    public static boolean solve(char[][] board, char ch[],int row,int col,int idx,int dir[][],boolean visited[][]){
+        int n=board.length;
+        int m=board[0].length;
+        if(idx==ch.length)
+            return true;
+        if(row<0 ||col<0 || row>=n || col>=m || idx>=ch.length)
+            return false;
+        if(visited[row][col])
+          return false;
+        if(ch[idx]!=board[row][col])
+            return false;
+        visited[row][col]=true;
+        for(int i=0;i<4;i++)
+        {
+            int x=row+dir[i][0];
+            int y=col+dir[i][1];
+            
+            if(solve(board,ch,x,y,idx+1,dir,visited))
+            return true;
+        }
+         visited[row][col]=false;
+        return false;
+    }
+}

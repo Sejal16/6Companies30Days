@@ -1,0 +1,57 @@
+https://practice.geeksforgeeks.org/problems/find-the-missing-no-in-string/1/#
+
+class GfG
+{
+	public int missingNumber(String s)
+       {
+      for(int len=1;len<=Math.min(6,s.length());len++)
+      {
+          String temp="";
+          int i=0,l=len;
+        while(i<s.length() && l-->0){
+          temp=temp+s.charAt(i);
+          i++;
+      }
+      int c=0,j=i,flag=0,prev=convert(temp),miss=0;
+      temp="";
+      while(j<s.length())
+      {
+         temp=temp+s.charAt(j);
+         j++;
+         int num=convert(temp);
+         if(prev+1 == num)
+         {
+            prev=num;
+            temp="";
+         }
+         else if(prev+2==num)
+         {
+             miss=prev+1;
+             prev=num;
+             temp="";
+             c++;
+         }
+         else if(prev<num)
+         {
+             flag=1;
+         }
+      }
+      if(c==1 && flag==0)
+      return miss;
+      
+      }
+      return -1;
+       }
+       public static int convert(String s)
+       {
+           char ch[]=s.toCharArray();
+           int num=0;
+           for(char c:ch)
+           {
+               num=num*10+(c-'0');
+           }
+           return num;
+       }
+}
+
+

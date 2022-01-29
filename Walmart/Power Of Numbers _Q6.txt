@@ -1,0 +1,22 @@
+https://practice.geeksforgeeks.org/problems/power-of-numbers-1587115620/1/?company[]=Walmart&company[]=Walmart&page=1&query=company[]Walmartpage1company[]Walmart# 
+
+class Solution
+{
+        
+    long power(int a,int b)
+    {long mod=1000000007;
+      long ans=1L;
+        long p=a;
+        while(b>0)
+        {
+            if((b&1)>0)
+            ans=(ans%mod*p%mod)%mod;
+          
+                p=(p%mod*p%mod)%mod;
+                b>>=1;
+            
+        }
+        return ans;
+    }
+
+}

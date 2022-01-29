@@ -1,0 +1,17 @@
+https://practice.geeksforgeeks.org/problems/transform-to-sum-tree/1/#
+
+class Solution{
+    public void toSumTree(Node root){
+       solve(root);
+    }
+    static int solve(Node root){
+        if(root==null)
+        return 0;
+        int lef=solve(root.left);
+        int righ=solve(root.right);
+        int d=root.data;
+        root.data=lef+righ;
+        return d+root.data;
+   
+    }
+}

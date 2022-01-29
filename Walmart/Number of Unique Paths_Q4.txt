@@ -1,0 +1,32 @@
+https://practice.geeksforgeeks.org/problems/number-of-unique-paths5339/1/
+
+class Solution
+{
+    //Function to find total number of unique paths.
+    public static int NumberOfPath(int n, int m) 
+    {
+      int dp[]=new int[m];
+        int curr[]=new int[m];
+      for(int i=0;i<n;i++)
+      {
+        
+          for(int j=0;j<m;j++)
+          {
+              if(i==0 && j==0)
+              {
+                  curr[j]=1;
+              }
+          else
+          { int left=0;
+          int up=0;
+              if(i>0) up=dp[j];
+              if(j>0) left=curr[j-1];
+              curr[j]=up+left;
+          }}
+         
+             dp=curr;
+          
+      }
+      return dp[m-1];
+    }
+}
